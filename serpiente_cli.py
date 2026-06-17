@@ -32,16 +32,23 @@ def juego(ventana):
 
     dx = 1
     dy = 0
+    
+    direcciones = {
+        "Arriba": [ord('W'), ord('w'), curses.KEY_UP],
+        "Abajo": [ord('S'), ord('s'), curses.KEY_DOWN],
+        "Izquierda": [ord('A'), ord('a'), curses.KEY_LEFT],
+        "Derecha": [ord('D'), ord('d'), curses.KEY_RIGHT]
+    }
 
     while True:
         tecla = ventana.getch()
-        if tecla == curses.KEY_UP and dy == 0:
+        if tecla in direcciones["Arriba"] and dy == 0:
             dx, dy = 0, -1
-        elif tecla == curses.KEY_DOWN and dy == 0:
+        elif tecla in direcciones["Abajo"] and dy == 0:
             dx, dy = 0, 1
-        elif tecla == curses.KEY_LEFT and dx == 0:
+        elif tecla in direcciones["Izquierda"] and dx == 0:
             dx, dy = -1, 0
-        elif tecla == curses.KEY_RIGHT and dx == 0:
+        elif tecla in direcciones["Derecha"] and dx == 0:
             dx, dy = 1, 0
 
         # Nueva cabeza
@@ -56,7 +63,7 @@ def juego(ventana):
             print("Game Over! Puntuación:", len(serpiente) - 1)
             break
 
-        # Comer comida
+        # Comer comida que se come con la boca
         if nueva_cabeza == comida:
             comida = [random.randint(1, cordenada_max_y-2), random.randint(1, cordenada_max_x-2)]
             ventana.addstr(comida[0], comida[1], ' ')
