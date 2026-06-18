@@ -71,7 +71,7 @@ def juego(ventana):
 
         # Comer comida que se come con la boca
         if nueva_cabeza == comida:
-            comida = [random.randint(3, max_y - 5), random.randint(3, max_x - 5)]
+            comida = [random.randint(3, max_y - 3), random.randint(3, max_x - 3)]
             puntaje += 1
             ventana.addstr(comida[0], comida[1], ' ')
         else:
@@ -92,6 +92,8 @@ def limpiar():
 def main():
     limpiar()
     print("-~"*15, "M~E~N~U", "~-"*15)
+    print("el juego se juega con las teclas siguientes:")
+    print("=>> WASD \n=>> las flechas")
     descicion = input("Quieres jugar? (s/n) \n=>> ").lower()
     if descicion == 's':
         limpiar()
